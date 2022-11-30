@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component("currency") @Secured
 public class CurrencyService {
-    public int changeCurrency(int amount){
+    protected int changeCurrency(int amount){
         return amount;
     }
     @Intransaction
-    public void changeCurrency(int amount, int transferAmount){
-
+    void changeCurrency(int amount, int transferAmount){
+        changeCurrency(200);
     }
     public String getLongCurrencyName(CurrencyId currencyId){
         if (currencyId.equals(CurrencyId.US)) {

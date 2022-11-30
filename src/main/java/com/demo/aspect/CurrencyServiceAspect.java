@@ -23,7 +23,8 @@ public class CurrencyServiceAspect {
     public void beanCurrencyServicePointcut(){}
     @Pointcut("args(int,int)")
     public void argsCurrencyServicePointcut(){}
-
+    @Pointcut("execution(public * com.demo.service.AccountServiceImpl.test(..))")
+    public void executionCurrencyServicePointcut(){}
     @Pointcut("@args(com.demo.annotation.Validated)")
     public void argsAnnotationCurrencyServicePointcut(){}
 //    @Before("withinCurrencyServicePointCut()")
@@ -37,7 +38,7 @@ public class CurrencyServiceAspect {
                         LocalDateTime.now())
         );
     }
-//    @Before("withinAnnotationCurrencyPointCut()")
+    @Before("withinAnnotationCurrencyPointCut()")
     public void beforeWithinAnnotationCurrencyAdvice(JoinPoint joinPoint){
         String className = joinPoint.getTarget().getClass().getSimpleName();
         System.out.println(
@@ -116,7 +117,7 @@ public class CurrencyServiceAspect {
                         LocalDateTime.now())
         );
     }
-    @Around("targetAnnotationCurrencyServicePointcut()")
+//    @Around("targetAnnotationCurrencyServicePointcut()")
     public Object argsAnnotationCurrencyAroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         System.out.println(
